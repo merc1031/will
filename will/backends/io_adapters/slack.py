@@ -1,3 +1,4 @@
+import exceptions
 import json
 import logging
 import random
@@ -514,7 +515,7 @@ class SlackBackend(IOBackend, SleepMixin, StorageMixin):
                             current_poll_count = 0
 
                         self.sleep_for_event_loop()
-            except (WebSocketConnectionClosedException, SlackConnectionError):
+            except (WebSocketConnectionClosedException, SlackConnectionError, exceptions.TimeoutError):
                 logging.error('Encountered connection error attempting reconnect in 2 seconds')
                 time.sleep(2)
             except (KeyboardInterrupt, SystemExit):
