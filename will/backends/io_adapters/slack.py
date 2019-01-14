@@ -524,10 +524,10 @@ class SlackBackend(IOBackend, SleepMixin, StorageMixin):
                 logging.error('Encountered connection error attempting reconnect in 2 seconds')
                 time.sleep(2)
             except (KeyboardInterrupt, SystemExit):
-                break
+                raise
             except:
                 logging.critical("Error in watching slack RTM: \n%s" % traceback.format_exc())
-                break
+                raise
 
     def bootstrap(self):
         # Bootstrap must provide a way to to have:
