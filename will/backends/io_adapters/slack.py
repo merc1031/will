@@ -1,4 +1,3 @@
-import exceptions
 import json
 import logging
 import random
@@ -520,7 +519,7 @@ class SlackBackend(IOBackend, SleepMixin, StorageMixin):
                     WebSocketTimeoutException,
                     SlackConnectionError,
                     socket.timeout,
-                    exceptions.TimeoutError):
+                    TimeoutError):
                 logging.error('Encountered connection error attempting reconnect in 2 seconds')
                 time.sleep(2)
             except (KeyboardInterrupt, SystemExit):
